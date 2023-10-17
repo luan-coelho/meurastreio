@@ -1,5 +1,5 @@
 import 'package:go_router/go_router.dart';
-import 'package:meurastreio/screens/login-screen.dart';
+import 'package:meurastreio/screens/login_screen.dart';
 
 final router = GoRouter(
   routes: [

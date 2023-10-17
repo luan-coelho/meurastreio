@@ -9,7 +9,7 @@ class Label extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Text(text,
-        style: const TextStyle(fontSize: 25, fontWeight: FontWeight.w600),
+        style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
         textAlign: textAlign);
   }
 }
