@@ -1,0 +1,29 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "username": "admin",
+      "email": "admin@gmail.com",
+      "password": "admin"
+    },
+    {
+      "id": 2,
+      "username": "jane_doe",
+      "email": "jane.doe@example.com",
+      "password": "password456"
+    },
+    {
+      "id": 3,
+      "username": "sam_smith",
+      "email": "sam.smith@example.com",
+      "password": "password789"
+    }
+  ]
+}
+
+
+
+
+
+
+

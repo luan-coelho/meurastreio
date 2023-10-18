@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:meurastreio/services/user_service.dart';
 import 'package:meurastreio/widgets/label.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -14,18 +16,34 @@ class LoginFormState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
   late TextEditingController _emailController;
   late TextEditingController _passwordController;
+  late UserService _userService;
 
   late FocusNode _emailFocusNode;
-  bool _obscured = false;
+  bool _obscured = true;
 
   void _toggleObscured() {
     setState(() {
       _obscured = !_obscured;
       if (_emailFocusNode.hasPrimaryFocus) {
-        return; // If focus is on text field, dont unfocus
+        return;
       }
-      _emailFocusNode.canRequestFocus = false; // Prevents focus if tap on eye
+      _emailFocusNode.canRequestFocus = false;
     });
+  }
+
+  void _login() async {
+    String email = _emailController.text;
+    String password = _passwordController.text;
+    bool success = await _userService.login(email, password);
+    if (success) {
+      context.go('/orders');
+    } else {
+      const snackBar = SnackBar(
+        content: Text('Email ou senha inválidos'),
+        backgroundColor: Colors.red,
+      );
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+    }
   }
 
   @override
@@ -34,6 +52,7 @@ class LoginFormState extends State<LoginScreen> {
     _emailController = TextEditingController();
     _passwordController = TextEditingController();
     _emailFocusNode.requestFocus();
+    _userService = UserService();
     super.initState();
   }
 
@@ -102,7 +121,7 @@ class LoginFormState extends State<LoginScreen> {
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(10)),
                               ),
-                              prefixIcon: Icon(Icons.email, size: 24),
+                              // prefixIcon: Icon(Icons.email, size: 24),
                               hintText: "Informe seu email",
                             ),
                           )
@@ -146,8 +165,8 @@ class LoginFormState extends State<LoginScreen> {
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(10)),
                               ),
-                              prefixIcon:
-                                  const Icon(Icons.lock_rounded, size: 24),
+                              /* prefixIcon:
+                                  const Icon(Icons.lock_rounded, size: 24),*/
                               suffixIcon: Padding(
                                 padding: const EdgeInsets.fromLTRB(0, 0, 4, 0),
                                 child: GestureDetector(
@@ -186,7 +205,7 @@ class LoginFormState extends State<LoginScreen> {
                                 ))),
                             onPressed: () {
                               if (_formKey.currentState!.validate()) {
-                                print("validação");
+                                _login();
                               }
                             },
                             child: const Text("LOGIN",
