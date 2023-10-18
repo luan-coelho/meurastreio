@@ -18,6 +18,57 @@
       "email": "sam.smith@example.com",
       "password": "password789"
     }
+  ],
+  "orders": [
+    {
+      "id": "1",
+      "name": "Pacote de Livros",
+      "description": "Um conjunto de livros sobre programação",
+      "trackingNumber": "123456789",
+      "carrier": "Correios",
+      "dateShipped": "2023-10-10T10:00:00Z",
+      "dateDelivered": null,
+      "status": "Em trânsito",
+      "history": [
+        {
+          "date": "2023-10-10T10:00:00Z",
+          "location": "São Paulo, SP",
+          "status": "Postado"
+        },
+        {
+          "date": "2023-10-12T12:00:00Z",
+          "location": "Rio de Janeiro, RJ",
+          "status": "Em trânsito"
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "name": "Equipamento Eletrônico",
+      "description": "Um novo laptop",
+      "trackingNumber": "987654321",
+      "carrier": "FedEx",
+      "dateShipped": "2023-10-05T09:00:00Z",
+      "dateDelivered": "2023-10-15T09:00:00Z",
+      "status": "Entregue",
+      "history": [
+        {
+          "date": "2023-10-05T09:00:00Z",
+          "location": "Belo Horizonte, MG",
+          "status": "Postado"
+        },
+        {
+          "date": "2023-10-10T10:00:00Z",
+          "location": "Curitiba, PR",
+          "status": "Em trânsito"
+        },
+        {
+          "date": "2023-10-15T09:00:00Z",
+          "location": "Porto Alegre, RS",
+          "status": "Entregue"
+        }
+      ]
+    }
   ]
 }
 
