@@ -99,6 +99,14 @@ class LoginFormState extends State<LoginScreen> {
                               if (value == null || value.isEmpty) {
                                 return 'Informe o email';
                               }
+
+                              String regexExpression =
+                                  r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+";
+                              final RegExp pattern = RegExp(regexExpression);
+                              RegExp regex = RegExp(pattern.pattern);
+                              if (!regex.hasMatch(value)) {
+                                return 'Informe um email válido';
+                              }
                               return null;
                             },
                             decoration: const InputDecoration(
